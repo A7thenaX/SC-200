@@ -1,0 +1,108 @@
+# 🧠 Threat Hunting Report
+
+## 📌 Hunt Title
+> _Brief, descriptive name of the hunt (e.g., "Suspicious PowerShell Activity Across Endpoints")_
+
+---
+
+## 1️⃣ Develop Hypothesis
+> _What are you trying to prove or disprove?_
+Example: “An attacker may be using PowerShell to execute malicious scripts across multiple endpoints.”
+
+---
+
+## 2️⃣ Data Review
+> _List and review data sources relevant to the hypothesis._
+- [ ] Microsoft Sentinel
+- [ ] Microsoft Defender XDR
+- [ ] Endpoint logs
+- [ ] Network logs
+- [ ] Identity logs
+- [ ] Other: `__________`
+
+---
+
+## 3️⃣ Plan Hunt
+> _Define scope, timeframe, and queries._
+- Scope: `__________`
+- Timeframe: `__________`
+- Tools: `__________`
+- Queries:
+```kql
+// Example KQL query
+DeviceEvents
+| where ActionType == "PowerShellCommand"
+| where Timestamp > ago(7d)
+| summarize count() by DeviceName, InitiatingProcessAccountName
+```
+
+--- 
+
+## 4️⃣ Execute Hunt
+> _Document steps taken and queries executed._
+- [ ] Query executed
+- [ ] Data analyzed
+- [ ] Anomalies identified
+
+---
+
+## 5️⃣ Findings
+> _Summarize what you discovered. Include screenshots, indicators, or patterns._
+- Suspicious PowerShell usage on 3 devices
+- Same account used across multiple machines
+- Connection to external IP: `192.168.1.100`
+
+
+## 6️⃣ MITRE ATT&CK Mapping
+| Tactic            | Technique             | Technique ID |
+|-------------------|------------------------|--------------|
+| Execution         | PowerShell             | T1059.001    |
+| Lateral Movement  | Remote Services        | T1021        |
+
+---
+
+## 7️⃣ Respond
+- [ ] No threat found
+- [x] Suspicious activity confirmed
+- [ ] Incident escalated
+- [ ] Detection rule created
+- [ ] IOC shared with SOC
+
+---
+
+## 8️⃣ Monitor
+> _Steps to monitor for similar activity._
+- [ ] Create detection rule
+- [ ] Add alert to Sentinel
+- [ ] Update dashboards
+
+---
+
+## 9️⃣ Improve
+> _Lessons learned and improvements._
+- [ ] Update hunting queries
+- [ ] Enhance detection logic
+- [ ] Share findings with SOC
+
+---
+
+## 🔁 How to Replicate the Hunt
+> _Step-by-step instructions or queries to repeat the hunt in the future._
+1. Open Microsoft Sentinel or Defender XDR.
+2. Run the following KQL query:
+```kql
+DeviceEvents
+| where ActionType == "PowerShellCommand"
+| where Timestamp > ago(7d)
+| summarize count() by DeviceName, InitiatingProcessAccountName
+```
+---
+
+## 📄 Document
+> _Attach findings, screenshots, and references._
+- [ ] Link to Sentinel workbook
+- [ ] Link to Defender XDR incident
+- [ ] External threat intel reference
+
+
+
