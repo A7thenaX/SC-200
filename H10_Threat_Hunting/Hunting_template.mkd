@@ -1,6 +1,6 @@
-# 🧠 Threat Hunting Report
+# Threat Hunting Report
 
-## 📌 Hunt Title
+## Hunt Title
 > _Brief, descriptive name of the hunt (e.g., "Suspicious PowerShell Activity Across Endpoints")_
 
 ---
@@ -63,7 +63,7 @@ DeviceEvents
 
 ## 7️⃣ Respond
 - [ ] No threat found
-- [x] Suspicious activity confirmed
+- [ ] Suspicious activity confirmed
 - [ ] Incident escalated
 - [ ] Detection rule created
 - [ ] IOC shared with SOC

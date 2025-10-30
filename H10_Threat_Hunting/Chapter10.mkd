@@ -1,38 +1,58 @@
-# Chapter 10: Threat hunting
-
+# **Chapter 10: Perform threat hunting in Microsoft Sentinel**
+Proactively hunt for security threats using the Microsoft Sentinel powerful threat hunting tools.
  - [ ] Explain threat hunting concepts in Microsoft Sentinel
  - [ ] Threat hunting with Microsoft Sentinel
  - [ ] Use Search jobs in Microsoft Sentinel
  - [ ] Hunt for threats using notebooks in Microsoft Sentinel
 
+**Key concepts**: Threat hunting process, Threat hunting template, Proactive, Microsoft Sentinel, KQL, notebooks, search jobs, bookmarks, live stream
+
  ## Explain threat hunting concepts in Microsoft Sentinel
 
  `Threat hunting`
- - proactively hunting through your environment for a threat or a set of activities that you **haven't previously detected**
- - searching for threats with newly obtained indicators
+ - Hunt for malicious activity in your environment.
+ - Proactively hunt through your environment for a threat or a set of activities that you haven't previously detected.
+ - Searching for threats with newly obtained indicators
+ - Using KQL queries to find threats.
+
+ `Threat Intelligence Feed`
+ A Threat Intelligence Feed is a continuous stream of data about known or emerging cyber threats, such as malicious IPs, domains, or malware that helps security systems detect and respond to attacks more effectively.
 
  `Threat modeling`
  - To identify and assess potential threats before they occur, during the design or planning phase of a system or application.
  - Understanding how an attacker might exploit a system.
 
- `Important to know before executing`
- - we hunt based on a Hypothesis
- - hunt for evidence-based threats from a current Incident or Alert as part of an Incident Analysis process
- - it's vital to explore data based on evidence found in a current incident
- - involves forming hypotheses and searching for patterns or behaviors that indicate malicious activity
- - using KQL queries to find threats
+ `Important to know`
+ - We hunt based on a Hypothesis.
+ - Hunt for evidence-based threats from a current Incident or Alert as part of an Incident Analysis process.
+ - Involves forming hypotheses and searching for patterns or behaviors that indicate malicious activity
+ - Using KQL queries to find threats
 
 `Proactive hunts`
  - Why do proactive hunting? As you hunt for "not previously detected" threats, the concern is that if you wait for the threat to be detected, the compromise impact could be more significant. 
+ -  If we don't have a known indicator, then what are we hunting? We hunt based on a Hypothesis. 
  - The Hypothesis might start with "Operational Threat Intelligence," and then list the attackers' tactics and techniques.
  - A Hypothesis can search for a specific technique, not an indicator like an IP address.
  - If malicious activity is identified, we might have discovered the attacker earlier in the attack process before they have an opportunity to exfiltrate data.
 
- `Threat hunting process (DOCUMENT)`
+`Threat hunting process`
+ ![Threat hunting process](/Images/process.png)
+
+`Routine tasks should include`
+- Setting up new monitoring.
+- Improving our detection capabilities.
+
+`Everything done in Threat Hunting should be documented. Documentation for the hunt should include`
+- What, How, and Why
+- Input and Output
+- How to replicate the hunt
+- Next Steps
+
+ `Threat hunting process (Continual process)`
  1. Develop Hypothesis
-    - Our Hypothesis helps us plan out what we are going to hunt for, which requires us to understand where we're going to hunt and how we'll do it
-    - This could be an alert, anomaly, threat intelligence, or even a hunch based on experience
-    - example: An attacker may be using legitimate credentials to move laterally 
+    - Our Hypothesis helps us plan out what we are going to hunt for, which requires us to understand where we're going to hunt and how we'll do it.
+    - This could be an alert, anomaly, threat intelligence, or even a hunch based on experience.
+    - Example: An attacker may be using legitimate credentials to move laterally.
  2. Data review
     - Identify and review the data sources you’ll need to validate your hypothesis.
     - This includes logs from endpoints, network traffic, identity systems, and threat intelligence feeds.
@@ -52,12 +72,32 @@
    - Feed lessons learned back into your security program.
    - Enhance detection capabilities, refine hunting queries, and improve processes.
 
-Document (Central Step)
+ `Document (Central Step)`
 - Document every stage: hypothesis, queries, findings, and outcomes.
 - This ensures repeatability and knowledge sharing across the team.
 
-![Threat hunting process](/Images/process.png)
+ `Develop a hypothesis`
 
+Hunting starts with a Hypothesis. The idea of what we are going to hunt. Getting this right is critical because it drives our focuses on what we are going to do. What makes a good Hypothesis?
+ - Keep it achievable: Don't perform a hunt where you know you have no hope of finding results. It could be that you don't have the data available, or have insufficient knowledge about the threat to understand how to find it.
+ - Keep the scope narrow
+ - Keep it time-bound
+ - Keep it useful and efficient
+ - Keep it related to the threat model that you are defending against (MITRE ATT&CK)
+
+ Another Hypothesis could be: We want to check for the last day in which accounts have run cmd.exe, but that have not run cmd.exe during the past week.
+
+  `MITRE ATT&CK`
+
+- Publicly accessible knowledge base of tactics, techniques, and procedures (TTP's) that are commonly used by attackers, and is created and maintained by observing real-world observations.
+
+`To come`
+- bookmarks
+- livestreams
+- search jobs
+- Jupyter notebooks
+- workbook
+- playbook
 
 
 

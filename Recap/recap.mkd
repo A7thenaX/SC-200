@@ -1,0 +1,7 @@
+# Recap Cyber ops concepts
+
+- Inidcators of Compromise (IOCs)
+- Alert triage is the process of reviewing, prioritizing, and categorizing security alerts to determine which ones require immediate attention and which can be dismissed or investigated later. It’s a critical step in incident response and SOC operations.
+- An anomaly in cybersecurity refers to any activity or behavior that deviates from the normal or expected pattern
+- Proactive means acting in advance to prevent problems or detect threats early.
+- Reactive means responding after a problem or threat has already occurred.
