@@ -5,63 +5,63 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
  - [ ] Use Search jobs in Microsoft Sentinel
  - [ ] Hunt for threats using notebooks in Microsoft Sentinel
 
-**Key concepts**: Threat hunting process, Threat hunting template, Proactive, Microsoft Sentinel, KQL, notebooks, search jobs, bookmarks, live stream
+> 📌 **Key concepts**: Threat hunting process, Threat hunting template, Proactive, Microsoft Sentinel, KQL, notebooks, search jobs, bookmarks, live stream
 
- ## Explain threat hunting concepts in Microsoft Sentinel
+ ## **🧬 Explain threat hunting concepts in Microsoft Sentinel**
 
  Microsoft Sentinel provides the tools to perform Threat Hunting. Before starting the hunt, it's crucial to understand the Threat Hunting process.
 
- `Threat hunting`
+ #### `Threat hunting`
  - Hunt for malicious activity in your environment.
  - Proactively hunt through your environment for a threat or a set of activities that you haven't previously detected.
  - Searching for threats with newly obtained indicators
  - Using KQL queries to find threats.
 
- `Threat Intelligence Feed`
+ #### `Threat Intelligence Feed`
  A Threat Intelligence Feed is a continuous stream of data about known or emerging cyber threats, such as malicious IPs, domains, or malware that helps security systems detect and respond to attacks more effectively.
 
- `Threat modeling`
+ #### `Threat modeling`
  - To identify and assess potential threats before they occur, during the design or planning phase of a system or application.
  - Understanding how an attacker might exploit a system.
 
- `Threat model`
+ #### `Threat model`
  - A threat model is a structured way to identify and understand the potential risks and attack scenarios that could affect your systems, data, or users. It helps you focus your security efforts on the most relevant threats.
  - A threat model defines what you're protecting, who you're protecting it from, and how attackers might try to compromise it.
 
- `Key Elements of a Threat model`
+ #### `Key Elements of a Threat model`
  - Assets: What needs protection (e.g. data, identities, infrastructure)
  - Threats: What could go wrong (e.g. phishing, ransomware, insider abuse)
  - Attackers: Who might attack (e.g. cybercriminals, insiders, nation-states)
  - Entry Points: How they might get in (e.g. email, misconfigurations, exposed APIs)
  - Mitigations: What you do to prevent or detect attacks
 
- `Important to know`
+ #### `Important to know`
  - We hunt based on a Hypothesis.
  - Hunt for evidence-based threats from a current Incident or Alert as part of an Incident Analysis process.
  - Involves forming hypotheses and searching for patterns or behaviors that indicate malicious activity
  - Using KQL queries to find threats
 
-`Proactive hunts`
+ #### `Proactive hunts`
  - Why do proactive hunting? As you hunt for "not previously detected" threats, the concern is that if you wait for the threat to be detected, the compromise impact could be more significant. 
  -  If we don't have a known indicator, then what are we hunting? We hunt based on a Hypothesis. 
  - The Hypothesis might start with "Operational Threat Intelligence," and then list the attackers' tactics and techniques.
  - A Hypothesis can search for a specific technique, not an indicator like an IP address.
  - If malicious activity is identified, we might have discovered the attacker earlier in the attack process before they have an opportunity to exfiltrate data.
 
-`Threat hunting process`
+#### `Threat hunting process`
  ![Threat hunting process](/Images/process.png)
 
-`Routine tasks should include`
+#### `Routine tasks should include`
 - Setting up new monitoring.
 - Improving our detection capabilities.
 
-`Everything done in Threat Hunting should be documented. Documentation for the hunt should include`
+#### `Everything done in Threat Hunting should be documented. Documentation for  the hunt should include`
 - What, How, and Why
 - Input and Output
 - How to replicate the hunt
 - Next Steps
 
- `Threat hunting process (Continual process)`
+#### `Threat hunting process (Continual process)`
  1. Develop Hypothesis
     - Our Hypothesis helps us plan out what we are going to hunt for, which requires us to understand where we're going to hunt and how we'll do it.
     - This could be an alert, anomaly, threat intelligence, or even a hunch based on experience.
@@ -84,11 +84,11 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
    - Feed lessons learned back into your security program.
    - Enhance detection capabilities, refine hunting queries, and improve processes.
 
- `Document (Central Step)`
+#### `Document (Central Step)`
 - Document every stage: hypothesis, queries, findings, and outcomes.
 - This ensures repeatability and knowledge sharing across the team.
 
- `Develop a hypothesis`
+#### `Develop a hypothesis`
 
 Hunting starts with a Hypothesis. The idea of what we are going to hunt. Getting this right is critical because it drives our focuses on what we are going to do. What makes a good Hypothesis?
  - Keep it achievable: 
@@ -104,30 +104,30 @@ Focus your threat hunting on realistic threats that match your threat model like
 
 Don't start your Threat Hunting journey going after the most advanced threats. Start with the basics and incrementally mature your organization's Threat Hunting capabilities. Start with a simple Hunt Hypothesis
 
-`Hypothesis examples`
+#### `Hypothesis examples`
 - We want to check for the last day in which accounts have run cmd.exe, but that have not run cmd.exe during the past week.
 - An attacker may be using legitimate credentials to move laterally.
 - We have Threat Intel that a Threat Actor, has automated attacks that use the cmd.exe process.
 
-`MITRE ATT&CK`
+#### `MITRE ATT&CK`
 - Framework
-- Knowledge base of real-world adversary tactics, techniques, and procedures (TTPs) used by attackers.
+- Knowledge base of real-world adversary tactics, techniques, and procedures (TTPs) used by attackers on the global threat landscape. 
 - Open source
 - Many organizations use the MITRE ATT&CK knowledge base to develop specific threat models and methodologies that are used to verify security status in their environments.
 - When developing a threat hunting hypothesis, it's critical to understand the tactics (why), techniques (how), and procedures (implementations) you're searching for. 
 - The MITRE ATT&CK framework is used throughout Microsoft Sentinel.
 
-`Organizations use MITRE ATT&CK to`
+#### `Organizations use MITRE ATT&CK to`
 - Build threat models tailored to their environment
 - Map attack techniques to their systems
 - Identify gaps in detection and response
 - Improve SOC workflows, threat hunting, and incident response
 
-`Ingested data`
+#### `Ingested data`
 - Ingested data refers to data that has been collected and imported into a system like Microsoft Sentinel so it can be analyzed, monitored, and used for threat detection.
 - Microsoft Sentinel analyzes ingested data, not only to detect threats and help you investigate, but also to visualize the nature and coverage of your organization's security status.
 
-`View current MITRE coverage`
+#### `View current MITRE coverage`
 1. Go to SIEM
 2. View MITRE under Threat management (bedreigingen)
 3. By default, Active scheduled query, Active near real-time (NRT) rules, and Active anomaly query rules are indicated in the coverage matrix.
@@ -136,60 +136,391 @@ Don't start your Threat Hunting journey going after the most advanced threats. S
 6. You can think of them as automated threat detectors based on KQL queries.
 7. For example, select Hunting queries, and then select Hunting queries View link to jump to the Microsoft Sentinel Hunting page. There, you see a filtered list of the hunting queries that are associated with the selected technique, and available for you to configure in your workspace.
 
-`Active Scheduled Query Rules`
+#### `Active Scheduled Query Rules`
 - These are rules that run on a fixed schedule, typically using Kusto Query Language (KQL) in Microsoft Sentinel.
 - Analyze data at regular intervals (e.g., every 5 minutes, 1 hour).
 - Are ideal for detecting patterns or threats that don’t require immediate response.
 - Can be used to generate incidents based on historical data.
 - Example use case: Detecting repeated failed login attempts over the past hour.
 
-`Active Near Real-Time (NRT) Rules`
+#### `Active Near Real-Time (NRT) Rules`
 - These rules are designed for low-latency detection, running almost immediately after data is ingested.
 - Trigger within minutes of an event occurring.
 - Are optimized for high-speed detection of critical threats.
 - Use simplified KQL queries and have some limitations compared to scheduled rules (e.g., no joins or unions).
 - Example use case: Detecting a high-risk sign-in from a suspicious IP address as soon as it happens.
 
-`Active Anomaly Query Rules`
+#### `Active Anomaly Query Rules`
 - Use machine learning to detect unusual behavior across users, devices, or systems.
 - Identify deviations from normal baselines (e.g., a user downloading an unusually large number of files).
 - Are useful for uncovering subtle or unknown threats.
 - Often require tuning and validation to reduce false positives.
 - Example use case: Detecting a user accessing resources they don’t normally interact with.
 
-`Use the MITRE ATT&CK framework in analytics rules and incidents`
+#### `Use the MITRE ATT&CK framework in analytics rules and incidents`
 - Having a scheduled analytical rule with MITRE techniques applied running regularly in your Microsoft Sentinel workspace enhances the security status shown for your organization in the MITRE coverage matrix.
 - When creating a new hunting query, select the specific tactics and techniques to apply to your query.
 - When searching for active hunting queries, filter the queries displayed by tactics by selecting an item from the list above the grid. Select a query to see tactic and technique details on the right.
 - When creating bookmarks, either use the technique mapping inherited from the hunting query, or create your own mapping.
 
-## **Threat hunting with Microsoft Sentinel**
+## **🔎 Threat hunting with Microsoft Sentinel**
 
 Use Microsoft Sentinel to hunt for security threats across on-premises and cloud environments by using interactive queries and other tools.
 
+#### `Hunt by using built-in queries`
+- The Hunting page provides a list all hunting queries. You can filter and sort queries by name, provider, data source, results, and tactics. You can save queries by selecting the Favorites star icon for the query in the list.
+- When a query is selected as a favorite, it runs automatically each time you open the Hunting page.
+- When you select a query from the list, the query details appear on a new pane that contains a description, code, and other information about the query. That information includes related entities and identified tactics. You can run a query interactively by selecting Run Query on the details pane.
+- Microsoft Sentinel uses the MITRE ATT&CK framework to categorize and order queries by tactics. 
+- Selecting any tactic filters the available queries by the selected tactic. 
+- The following Hunting tactics are from the ATT&CK Enterprise and ICS (Industrial Control Systems) matrices.
+
+#### `Hunting tactics from the ATT&CK Enterprise and ICS (Industrial Control Systems) matrices:`
+- <p style="background-color: yellow; display: inline;">Reconnaissance</p>
+
+  Tactics that the adversary uses to find information they can use to plan future operations.
+
+-  <p style="background-color: yellow; display: inline;">Resource development</p>
+
+   Tactics that the adversary uses to establish resources they can use to support operations. Resources include infrastructure, accounts, or capabilities.
+
+- <p style="background-color: yellow; display: inline;">Initial access</p>
+  
+  Tactics that the adversary uses to gain entry to a network, by exploiting vulnerabilities or configuration weaknesses in public-facing systems. An example is targeted spear-phishing.
+
+- <p style="background-color: yellow; display: inline;">Execution</p>
+  
+  Tactics that result in an adversary running their code on a target system. For example, a malicious hacker might run a PowerShell script to download more attacker tools and/or scan other systems.
+
+- <p style="background-color: yellow; display: inline;">Persistence</p>
+  
+  Tactics that allow an adversary to maintain access to a target system, even after restarts and credential changes. An example of a persistence technique is an attacker who creates a scheduled task that runs their code at a specific time or on restart.
+
+- <p style="background-color: yellow; display: inline;">Privilege escalation</p>
+
+  Tactics that an adversary uses to gain higher-level privileges on a system, such as local administrator or root.
+
+- <p style="background-color: yellow; display: inline;">Defense evasion</p>
+  
+  Tactics that attackers use to avoid detection. Evasion tactics include hiding malicious code within trusted processes and folders, encrypting or obfuscating adversary code, or disabling security software.
+
+- <p style="background-color: yellow; display: inline;">Credential access</p>
+  
+  Tactics deployed on systems and networks to steal usernames and credentials for reuse.
+
+- <p style="background-color: yellow; display: inline;">Discovery</p>
+
+  Tactics that adversaries use to obtain information about systems and networks that they want to exploit or use for their tactical advantage.
+
+- <p style="background-color: yellow; display: inline;">Lateral movement</p>
+  
+  Tactics that allow an attacker to move from one system to another within a network. Common techniques include pass-the-hash methods of authenticating users and abuse of the Remote Desktop Protocol.
+
+- <p style="background-color: yellow; display: inline;">Collection</p>
+  
+  Tactics that an adversary uses to gather and consolidate the information they were targeting as part of their objectives.
+
+- <p style="background-color: yellow; display: inline;">Command and control</p>
+  
+  Tactics that an attacker uses to communicate with a system under their control. One example is an attacker communicating with a system over an uncommon or high-numbered port to evade detection by security appliances or proxies.
+
+- <p style="background-color: yellow; display: inline;">Exfiltration</p>
+  
+  Tactics used to move data from the compromised network to a system or network that's fully under control of the attacker.
+
+- <p style="background-color: yellow; display: inline;">Impact</p>
+  
+  Tactics that an attacker uses to affect the availability of systems, networks, and data. Methods in this category include denial-of-service attacks and disk-wiping or data-wiping software.
+
+- <p style="background-color: yellow; display: inline;">Impair Process Control</p>
+  
+  Tactics the adversary uses to manipulate, disable, or damage physical control processes.
+
+- <p style="background-color: yellow; display: inline;">Inhibit Response Function</p>
+  
+  Tactics the adversary uses to prevent your safety, protection, quality assurance, and operator intervention functions from responding to a failure, hazard, or unsafe state.
 
 
+#### `Create custom queries to refine threat hunting on the Hunting blade`
+- All Microsoft Sentinel hunting queries use Kusto Query Language (KQL) syntax used in Log Analytics. 
+- You can modify a query in the details pane and run the new query. Or you can save it as a new query that can be reused in your Microsoft Sentinel workspace.
+- Or you can save it as a new query that can be reused in your Microsoft Sentinel workspace.
+- You can also create your own custom queries by using KQL code to hunt for threats.
+
+#### `Create Query`
+- Where?
+  Hunting blade
+- To write and save a KQL query for threat hunting.
+- Use case
+  You want to search for suspicious activity manually (e.g., unusual logins).
+
+#### `Create Livestream`
+- Where?
+  Hunting blade
+- To run a KQL query continuously and get real-time results.
+- Use case
+  You want to monitor live data for specific patterns (e.g., brute force attempts).
+
+#### `Create Bookmark`
+- Where?
+  From query results or incident investigation.
+-  To save interesting findings (like a suspicious event) for later analysis or correlation.
+- Use case
+  You found a suspicious login and want to link it to a hunt or incident.
+
+#### `Create hunt`
+- Where?
+  Hunting blade
+- Before the hunt 
+  To document your hypothesis and plan — useful for structured, team-based hunting.
+- After the hunt
+  To record what you investigated and whether your hypothesis was confirmed — great for reporting and knowledge sharing.
+
+It helps with collaboration, tracking, and building a threat hunting history.
+
+#### `Save key findings with bookmarks`
+
+- To hunt for threats you have to review large amounts of log data for evidence of malicious behavior. 
+- During this process, you might find events that you want to remember, revisit, and analyze as part of validating potential hypotheses and understanding the full story of a compromise.
+- Bookmarks in Microsoft Sentinel can help you hunt for threats by preserving the queries you already ran, along with the query results that you deem relevant. 
+- You can also record your contextual observations and reference your findings by adding notes and tags. Bookmarked data is visible to you and your teammates for easy collaboration.
+- Alternatively, you can review your bookmarked data directly in the HuntingBookmark table in your Log Analytics workspace.
+
+```KQL
+HuntingBookmark
+| sort by TimeGenerated desc
+```
+
+#### `Create or add to incidents by using bookmarks`
+
+You can use bookmarks to create a new incident or add bookmarked query results to existing incidents. 
+
+#### `Use the investigation graph to explore bookmarks`
+
+- You can investigate bookmarks in the same way that you'd investigate incidents in Microsoft Sentinel. From the Hunting page, select your Hunt with a Bookmark from the Hunts (Preview) tab.
+- You can select the bookmark item on the graph to observe important bookmark metadata related to the bookmark's security and environment context.
+
+####  `Observe threats over time with livestream `
+
+- You can use the hunting livestream to test queries against live events as they occur. 
+- Livestream provides interactive sessions that can notify you when Microsoft Sentinel finds matching events for your query.
+- A livestream is always based on a query. 
+- Livestream queries run continuously against your live environment, so you can't use time parameters in a livestream query.
+- You can also elevate events from a livestream session to an alert by selecting the events and then selecting Elevate to alert from the command bar.
+- Livestream queries refresh every 30 seconds and generate Azure notifications of any new results from the query.
+- Typically, you use the query to narrow down streaming log events, so only the events that are related to your threat-hunting efforts appear. You can use a livestream to:
+  - Test new queries against live events.
+  - Generate notifications for threats.
+  - Launch investigations.
+- You might use a livestream to track baseline activities for Azure resource deletion, and identify other Azure resources that should be tracked. For example, the following query returns any Azure Activity events that recorded a deleted resource:
+
+```KQL
+AzureActivity
+  | where OperationName has 'delete'
+  | where ActivityStatus == 'Accepted'
+  | extend AccountCustomEntity = Caller
+  | extend IPCustomEntity = CallerIpAddress
+```
+
+#### `Use a livestream query to create an analytics rule`
+
+If the query returns significant results, you can select Create analytics rule from the command bar to create an analytics rule/detection based on the query. After the rule refines the query to identify the specific resources, it can generate alerts or incidents when the resources are deleted.
+
+## 🧼 Use Search jobs in Microsoft Sentinel
+
+In Microsoft Sentinel, you can search across long time periods in large datasets by using a search job.You discover a new indicator of Compromise (IoC) and need to investigate if it has been previously seen in the logs. You need to restore archive logs and run a search job to discover previous instances of the IoC.
+
+> note: Starting in July 2026, all customers using Microsoft Sentinel in the Azure portal will be redirected to the Defender portal and will use Microsoft Sentinel in the Defender portal only.
+
+#### `Archived logs`
+
+📦 Archived Logs in Microsoft Sentinel
+- What: Logs stored in a cheaper, long-term tier (cold storage). They’re not searchable with regular KQL unless restored or queried via a search job.
+- Where: In your Log Analytics workspace, but not visible in the Tables pane unless you’ve archived data.
+- Why: For compliance, forensic investigations, or cost-saving.
+- For threat hunting in Microsoft Sentinel, restoring archived logs does cost money, and it requires some effort
+
+#### `Hunt with a search job`
+
+- One of the primary activities of a security team is to search logs for specific events.
+- In Microsoft Sentinel, you can search across long time periods in large datasets by using a search job.
+- Search jobs are ideally suited to search archived logs.
+- If you need to do a full investigation on archived data, you can restore that data into the hot cache to run high performing queries and analytics.
+
+#### `Search large datasets`
+
+- Search jobs are asynchronous queries that fetch records. 
+- The results are returned to a search table that's created in your Log Analytics workspace after you start the search job. 
+- The search job uses parallel processing to run the search across long time spans, in large datasets. 
+- So search jobs don't impact the workspace's performance or availability.
+- Search results remain in a search results table that has a *_SRCH suffix.
+
+#### `Supported log types`
+
+Use search to find events in any of the following log types:
+- Analytics logs (no charges apply)
+- Basic logs
+- Auxiliary logs
 
 
+#### `Limitations of a search job`
+
+Before you start a search job, be aware of the following limitations:
+- Optimized to query one table at a time.
+- Search date range is up to one year.
+- Supports long running searches up to a 24-hour timeout.
+- Results are limited to one million records in the record set.
+- Concurrent execution is limited to five search jobs per workspace.
+- Limited to 100 search results tables per workspace.
+- Limited to 100 search job executions per day per workspace.
+
+#### `Restore historical data`
+
+- When you need to do a full investigation on data stored in archived logs, restore a table from the Search page in Microsoft Sentinel. 
+- Specify a target table and time range for the data you want to restore. - Within a few minutes, the log data is restored and available within the Log Analytics workspace. 
+- Then you can use the data in high-performance queries that support full KQL.
+- A restored log table is available in a new table that has a *_RST suffix.
+- The restored data is available as long as the underlying source data is available. 
+- But you can delete restored tables at any time without deleting the underlying source data. 
+- To save costs, we recommend you delete the restored table when you no longer need it.
+
+## 📊 Hunt for threats using notebooks in Microsoft Sentinel
+
+You want to mature your Security Operations team to proactively hunt for malicious activity in your environment with advanced machine learning capabilities.
+
+After developing your hunting hypothesis, you utilize a Jupyter notebook to integrate machine learning libraries, advanced visualizations, and external data to detect malicious activity patterns.
+
+#### `Notebook`
+- You can use notebooks in Microsoft Sentinel for advanced hunting.
+- Python
+- Machine Learning
+
+#### `Access Azure Sentinel data with external tools`
+
+- Before hunting with notebooks, it's essential to understand the foundation of Microsoft Sentinel is the Log Analytics data store, which combines high-performance querying, dynamic schema, and scales to massive data volumes
+- The Azure portal and all Microsoft Sentinel tools use a standard API to access this data store. 
+- The same API is also available for external tools such as Python and PowerShell. 
+- There are two libraries that you can use to simplify API access:
+   - Kqlmagic
+   - msticpy
+
+#### `Kqlmagic`
+
+The Kqlmagic library provides an easy to implement API wrapper to run KQL queries.
+
+#### `msticpy`
+
+- Microsoft Threat Intelligence Python Security Tools.
+- A set of Python tools intended to be used for security investigations and hunting. 
+- Many of the tools originated as code Jupyter notebooks written to solve a problem as part of a security investigation. 
+- Some of the tools are only useful in notebooks (for example, much of the nbtools subpackage), but many others can be used from the Python command line or imported into your code.
+- The package addresses three central needs for security investigators and hunters:
+  - Acquiring and enriching data
+  - Analyzing data
+  - Visualizing data
+
+msticpy can query using KQL; the library also provides predefined queries for Microsoft Sentinel, Microsoft Defender XDR for Endpoint, and the Microsoft Security Graph. An example of a function is the list_logons_by_account, which retrieves the logon events for an account.
+
+#### `Hunt with notebooks`
+
+- A Jupyter Notebook allows you to create and share documents that contain live code, equations, visualizations, and explanatory text.
+- Uses include data cleaning and transformation, numerical simulation, statistical modeling, machine learning, and much more.
+- Jupyter extends the scope of what you can do with Microsoft Sentinel data. It combines full programmability with a vast library collection for machine learning, visualization, and data analysis. 
+- These attributes make Jupyter a useful tool for security investigation and hunting.
+- Notebooks have two components:
+  - The browser-based interface where you enter and run queries and code and where the execution results are displayed.
+  - The kernel is responsible for parsing and executing the code itself.
+- The Microsoft Sentinel notebook's kernel runs on an Azure virtual machine (VM). 
+- The Microsoft Sentinel notebooks use many popular Python libraries such as pandas, matplotlib, bokeh, etc. 
+- There are a great many other Python packages for you to choose from, covering areas such as:
+  - Visualizations and graphics
+  - Data processing and analysis
+  - Statistics and numerical computing
+  - Machine learning and deep learning
+- The msticpy package is used in many of the included notebooks. 
+- Msticpy tools are explicitly designed to help with creating notebooks for hunting and investigation.
 
 
-`To come`
-- bookmarks
-- livestreams: is like a live debugger for your queries—great for testing and hunting.
-- search jobs
-- Jupyter notebooks
-- workbook
-- playbook
+#### `Create a notebook`
 
+| Feature/Aspect                  | Using a Notebook                          | Just Running a Query                     |
+|--------------------------------|-------------------------------------------|------------------------------------------|
+| **Documentation**              | Allows inline documentation and context   | No built-in documentation                |
+| **Reproducibility**            | Easy to reproduce and share investigations| Harder to reproduce without notes        |
+| **Collaboration**              | Supports sharing and commenting           | Limited collaboration                    |
+| **Step-by-step Analysis**      | Enables structured, layered investigation | One-off execution, lacks structure       |
+| **Visualization**              | Integrates charts, graphs, and markdown   | Limited or no visualization              |
+| **Audit Trail**                | Maintains a history of actions and logic  | No persistent audit trail                |
+| **Learning & Training**        | Great for onboarding and tutorials        | Not suitable for teaching                |
+| **Flexibility**                | Combines code, notes, and results         | Only shows query results                 |
+| **Tool Integration**           | Can integrate with other tools (e.g., Python, KQL, Markdown) | Limited to query language                |
+| **Efficiency**                 | May take longer to set up but saves time long-term | Quick but less scalable                  |
 
+#### `Explore notebook code`
 
+Code Block Example 1:
+- Create a new variable [test_query] that contains the KQL query.
+- Next, you run the query [qry_prov.exec_query()]. This utilizes the msticpy library to execute the KQL query in the Microsoft Sentinel Log Analytics related workspace. The results are stored in the [test_df] variable.
+- Next, display the first five rows with the xxx_xxxx.head() function.
 
+```Python
+# Code Block Example 1
 
+# Stap 1: Maak een nieuwe variabele aan met de KQL-query
+test_query = """
+SecurityEvent
+| where EventID == 4625
+| project TimeGenerated, Account, Computer, FailureReason
+| limit 100
+"""
 
+# Stap 2: Voer de query uit met msticpy
+test_df = qry_prov.exec_query(query=test_query)
 
+# Stap 3: Toon de eerste vijf rijen van het resultaat
+test_df.head()
 
+```
 
+Code Block Example 2:
+- You create a new function called lookup_res that takes a variable row.
+- Next, you save the IP address stored in row to the variable [ip].
+- The next line of code uses the msticpy function [ti.lookup_ioc()] to query the ThreatIntelligenceIndicator table for a row that is sourced from VirusTotal with a matching ip-address.
+- Next, the msticpy function [ti.result_to_df()] will return a DataFrame representation of response.
+- The new function returns the Severity of the IP address.
 
+```Python
+def lookup_res(row):
+    ip = row
+    result = ti.lookup_ioc(ioc=ip, ioc_type="ip_address", providers=["VirusTotal"])
+    df_result = ti.result_to_df(result)
+    
+    # Controleer of er resultaten zijn en haal de Severity op
+    if not df_result.empty and 'Severity' in df_result.columns:
+        return df_result['Severity'].iloc[0]
+    else:
+        return "Unknown"
+```
 
+Code Block Example 3:
+- Create a new variable [vis_q] that contains the KQL query.
+- Next, you run the query [qry_prov.exec_query()]. This utilizes the msticpy library to execute the KQL query in the Microsoft Sentinel Log Analytics related workspace. The results are stored in the [vis_data] variable.
+- Then, [qry_prov.exec_query()] returns a pandas DataFrame that provides visualization features. You then plot a bar graph with the unique IP addresses and how many times they were used in the first five entries of the Dataframe.
 
- 
+```Python
+# Code Block Example 2
+
+# Stap 1: Maak een nieuwe variabele aan met de KQL-query
+vis_q = """
+SecurityEvent
+| where EventID == 4688
+| summarize Count = count() by IpAddress
+| top 5 by Count
+"""
+
+# Stap 2: Voer de query uit met msticpy
+vis_data = qry_prov.exec_query(query=vis_q)
+
+# Stap 3: Maak een staafdiagram van unieke IP-adressen en hun gebruik
+vis_data.plot.bar(x='IpAddress', y='Count', title='Top 5 IP Addresses by Usage')
+```

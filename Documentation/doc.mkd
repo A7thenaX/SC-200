@@ -5,3 +5,5 @@
 [SC-200 Microsoft](https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/?practice-assessment-type=certification)
 
 [Second Practice Exam](https://www.google.com/search?q=MeasureUp+practice+exams)
+
+[Azure Github](https://github.com/Azure/Azure-Sentinel)
