@@ -1,6 +1,6 @@
-# **Chapter 10: Perform threat hunting in Microsoft Sentinel**
+# **Chapter 10: Perform threat hunting in Microsoft Sentinel 🕵️‍♂️**
 Proactively hunt for security threats using the Microsoft Sentinel powerful threat hunting tools.
- - [ ] Explain threat hunting concepts in Microsoft Sentinel
+ - [x] Explain threat hunting concepts in Microsoft Sentinel
  - [ ] Threat hunting with Microsoft Sentinel
  - [ ] Use Search jobs in Microsoft Sentinel
  - [ ] Hunt for threats using notebooks in Microsoft Sentinel
@@ -8,6 +8,8 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
 **Key concepts**: Threat hunting process, Threat hunting template, Proactive, Microsoft Sentinel, KQL, notebooks, search jobs, bookmarks, live stream
 
  ## Explain threat hunting concepts in Microsoft Sentinel
+
+ Microsoft Sentinel provides the tools to perform Threat Hunting. Before starting the hunt, it's crucial to understand the Threat Hunting process.
 
  `Threat hunting`
  - Hunt for malicious activity in your environment.
@@ -21,6 +23,17 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
  `Threat modeling`
  - To identify and assess potential threats before they occur, during the design or planning phase of a system or application.
  - Understanding how an attacker might exploit a system.
+
+ `Threat model`
+ - A threat model is a structured way to identify and understand the potential risks and attack scenarios that could affect your systems, data, or users. It helps you focus your security efforts on the most relevant threats.
+ - A threat model defines what you're protecting, who you're protecting it from, and how attackers might try to compromise it.
+
+ `Key Elements of a Threat model`
+ - Assets: What needs protection (e.g. data, identities, infrastructure)
+ - Threats: What could go wrong (e.g. phishing, ransomware, insider abuse)
+ - Attackers: Who might attack (e.g. cybercriminals, insiders, nation-states)
+ - Entry Points: How they might get in (e.g. email, misconfigurations, exposed APIs)
+ - Mitigations: What you do to prevent or detect attacks
 
  `Important to know`
  - We hunt based on a Hypothesis.
@@ -52,7 +65,6 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
  1. Develop Hypothesis
     - Our Hypothesis helps us plan out what we are going to hunt for, which requires us to understand where we're going to hunt and how we'll do it.
     - This could be an alert, anomaly, threat intelligence, or even a hunch based on experience.
-    - Example: An attacker may be using legitimate credentials to move laterally.
  2. Data review
     - Identify and review the data sources you’ll need to validate your hypothesis.
     - This includes logs from endpoints, network traffic, identity systems, and threat intelligence feeds.
@@ -79,25 +91,98 @@ Proactively hunt for security threats using the Microsoft Sentinel powerful thre
  `Develop a hypothesis`
 
 Hunting starts with a Hypothesis. The idea of what we are going to hunt. Getting this right is critical because it drives our focuses on what we are going to do. What makes a good Hypothesis?
- - Keep it achievable: Don't perform a hunt where you know you have no hope of finding results. It could be that you don't have the data available, or have insufficient knowledge about the threat to understand how to find it.
- - Keep the scope narrow
- - Keep it time-bound
- - Keep it useful and efficient
- - Keep it related to the threat model that you are defending against (MITRE ATT&CK)
+ - Keep it achievable: 
+ Don't perform a hunt where you know you have no hope of finding results. It could be that you don't have the data available, or have insufficient knowledge about the threat to understand how to find it.
+ - Keep the scope narrow: 
+ Avoid broad a hypothesis such as "I'm going to hunt for strange log-ons." Such a hypothesis fails to define what the results could mean.
+ - Keep it time-bound: 
+ Are you looking for any sign-ins since the beginning of your logs? Are you looking for last week? The last day? The time-bounded also is used in documentation. You'll want Threat Hunting to be a continual process. If you don't time-bound your hunts, there's a chance that you'll end up just repeating the same hunt on the same dataset. You'll be able to say, "I did this hunt, at this time, covering this period." With this documented, your team members will know what period was hunted for with this Hypothesis.
+ - Keep it useful and efficient: 
+ You want to hunt for threats that your current detections might miss—especially in areas where your coverage is weak. Focus on realistic threats that apply to your environment, not advanced attacks targeting platforms or industries you don’t use.
+ - Keep it related to the threat model that you are defending against:
+Focus your threat hunting on realistic threats that match your threat model like those described in the MITRE ATT&CK framework. Otherwise, you risk wasting time chasing threats that don’t apply to your environment and will likely never occur.
 
- Another Hypothesis could be: We want to check for the last day in which accounts have run cmd.exe, but that have not run cmd.exe during the past week.
+Don't start your Threat Hunting journey going after the most advanced threats. Start with the basics and incrementally mature your organization's Threat Hunting capabilities. Start with a simple Hunt Hypothesis
 
-  `MITRE ATT&CK`
+`Hypothesis examples`
+- We want to check for the last day in which accounts have run cmd.exe, but that have not run cmd.exe during the past week.
+- An attacker may be using legitimate credentials to move laterally.
+- We have Threat Intel that a Threat Actor, has automated attacks that use the cmd.exe process.
 
-- Publicly accessible knowledge base of tactics, techniques, and procedures (TTP's) that are commonly used by attackers, and is created and maintained by observing real-world observations.
+`MITRE ATT&CK`
+- Framework
+- Knowledge base of real-world adversary tactics, techniques, and procedures (TTPs) used by attackers.
+- Open source
+- Many organizations use the MITRE ATT&CK knowledge base to develop specific threat models and methodologies that are used to verify security status in their environments.
+- When developing a threat hunting hypothesis, it's critical to understand the tactics (why), techniques (how), and procedures (implementations) you're searching for. 
+- The MITRE ATT&CK framework is used throughout Microsoft Sentinel.
+
+`Organizations use MITRE ATT&CK to`
+- Build threat models tailored to their environment
+- Map attack techniques to their systems
+- Identify gaps in detection and response
+- Improve SOC workflows, threat hunting, and incident response
+
+`Ingested data`
+- Ingested data refers to data that has been collected and imported into a system like Microsoft Sentinel so it can be analyzed, monitored, and used for threat detection.
+- Microsoft Sentinel analyzes ingested data, not only to detect threats and help you investigate, but also to visualize the nature and coverage of your organization's security status.
+
+`View current MITRE coverage`
+1. Go to SIEM
+2. View MITRE under Threat management (bedreigingen)
+3. By default, Active scheduled query, Active near real-time (NRT) rules, and Active anomaly query rules are indicated in the coverage matrix.
+4. Analytics Rules = Main Detections
+5. When the rule conditions are met, they trigger alerts or create incidents.
+6. You can think of them as automated threat detectors based on KQL queries.
+7. For example, select Hunting queries, and then select Hunting queries View link to jump to the Microsoft Sentinel Hunting page. There, you see a filtered list of the hunting queries that are associated with the selected technique, and available for you to configure in your workspace.
+
+`Active Scheduled Query Rules`
+- These are rules that run on a fixed schedule, typically using Kusto Query Language (KQL) in Microsoft Sentinel.
+- Analyze data at regular intervals (e.g., every 5 minutes, 1 hour).
+- Are ideal for detecting patterns or threats that don’t require immediate response.
+- Can be used to generate incidents based on historical data.
+- Example use case: Detecting repeated failed login attempts over the past hour.
+
+`Active Near Real-Time (NRT) Rules`
+- These rules are designed for low-latency detection, running almost immediately after data is ingested.
+- Trigger within minutes of an event occurring.
+- Are optimized for high-speed detection of critical threats.
+- Use simplified KQL queries and have some limitations compared to scheduled rules (e.g., no joins or unions).
+- Example use case: Detecting a high-risk sign-in from a suspicious IP address as soon as it happens.
+
+`Active Anomaly Query Rules`
+- Use machine learning to detect unusual behavior across users, devices, or systems.
+- Identify deviations from normal baselines (e.g., a user downloading an unusually large number of files).
+- Are useful for uncovering subtle or unknown threats.
+- Often require tuning and validation to reduce false positives.
+- Example use case: Detecting a user accessing resources they don’t normally interact with.
+
+`Use the MITRE ATT&CK framework in analytics rules and incidents`
+- Having a scheduled analytical rule with MITRE techniques applied running regularly in your Microsoft Sentinel workspace enhances the security status shown for your organization in the MITRE coverage matrix.
+- When creating a new hunting query, select the specific tactics and techniques to apply to your query.
+- When searching for active hunting queries, filter the queries displayed by tactics by selecting an item from the list above the grid. Select a query to see tactic and technique details on the right.
+- When creating bookmarks, either use the technique mapping inherited from the hunting query, or create your own mapping.
+
+## **Threat hunting with Microsoft Sentinel**
+
+Use Microsoft Sentinel to hunt for security threats across on-premises and cloud environments by using interactive queries and other tools.
+
+
+
+
+
+
 
 `To come`
 - bookmarks
-- livestreams
+- livestreams: is like a live debugger for your queries—great for testing and hunting.
 - search jobs
 - Jupyter notebooks
 - workbook
 - playbook
+
+
+
 
 
 

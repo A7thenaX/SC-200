@@ -5,3 +5,15 @@
 - An anomaly in cybersecurity refers to any activity or behavior that deviates from the normal or expected pattern
 - Proactive means acting in advance to prevent problems or detect threats early.
 - Reactive means responding after a problem or threat has already occurred.
+- Retroactive: It refers to the ability to look back at historical data to identify threats or suspicious activity after the fact — even if it wasn’t detected in real time.
+- Analytic rules: Analytics rules are your automated security guards, continuously watching for threats based on defined logic. Main detection in Sentinel.
+
+
+
+Threat models & penetratie tests
+- ✅ Samen gebruiken = Sterkste aanpak
+Je maakt eerst een threat model om je risico’s te begrijpen.
+Daarna voer je een penetratietest uit om te zien of je model klopt en waar je kwetsbaarheden hebt gemist.
+Zo krijg je een compleet beeld van je beveiliging: zowel theoretisch als praktisch.
+
+
