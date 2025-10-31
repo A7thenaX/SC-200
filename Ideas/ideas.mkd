@@ -1,0 +1,3 @@
+- Adding notebooks in sentinel with KQL, python and visuals for threat hunting
+- Using KQL for investigations and alerts
+- Defender for IoT

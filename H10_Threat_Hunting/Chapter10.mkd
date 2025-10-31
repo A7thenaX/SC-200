@@ -1,9 +1,9 @@
 # **Chapter 10: Perform threat hunting in Microsoft Sentinel 🕵️‍♂️**
 Proactively hunt for security threats using the Microsoft Sentinel powerful threat hunting tools.
  - [x] Explain threat hunting concepts in Microsoft Sentinel
- - [ ] Threat hunting with Microsoft Sentinel
- - [ ] Use Search jobs in Microsoft Sentinel
- - [ ] Hunt for threats using notebooks in Microsoft Sentinel
+ - [x] Threat hunting with Microsoft Sentinel
+ - [x] Use Search jobs in Microsoft Sentinel
+ - [x] Hunt for threats using notebooks in Microsoft Sentinel
 
 > 📌 **Key concepts**: Threat hunting process, Threat hunting template, Proactive, Microsoft Sentinel, KQL, notebooks, search jobs, bookmarks, live stream
 

@@ -1,0 +1,28 @@
+# **Chapter 10: Mitigate threats using Microsoft Defender for Endpoint 💻**
+Implement the Microsoft Defender for Endpoint platform to detect, investigate, and respond to advanced threats.
+ - [x] Protect against threats with Microsoft Defender for Endpoint
+ - [x] Deploy the Microsoft Defender for Endpoint environment
+ - [x] Implement Windows security enhancements with Microsoft Defender for Endpoint
+ - [x] Perform device investigations in Microsoft Defender for Endpoint
+ - [x] Perform actions on a device using Microsoft Defender for Endpoint
+ - [x] Perform evidence and entities investigations using Microsoft Defender for Endpoint
+ - [x] Configure and manage automation using Microsoft Defender for Endpoint
+ - [x] Configure for alerts and detections in Microsoft Defender for Endpoint
+ - [x] Utilize Vulnerability Management in Microsoft Defender for Endpoint
+
+> 📌 **Key concepts**: Defender, Endpoint protection
+
+ ## **Protect against threats with Microsoft Defender for Endpoint**
+
+Microsoft Defender for Endpoint uses the following combination of technologies built in:
+- Endpoint behavioral sensors: 
+  These sensors collect and process behavioral signals from the operating system. The sensors send the data to your private, isolated cloud instance of Microsoft Defender for Endpoint.
+- Cloud security analytics:
+  Uses big data, machine learning, and unique Microsoft optics across the Windows ecosystem, enterprise cloud products (such as Office 365), and online assets, behavioral signals are translated into insights, detections, and recommended responses to advanced threats.
+- Threat intelligence:
+  
+  ![Endpoint](/Images/endpoint.png)
+
+
+  
+

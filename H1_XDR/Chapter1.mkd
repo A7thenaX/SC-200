@@ -1,0 +1,24 @@
+# **Chapter 1: Mitigate threats using Microsoft Defender XDR 🛡️**
+Analyze threat data across domains and rapidly remediate threats with built-in orchestration and automation in Microsoft Defender XDR. 
+ - [x] Introduction to Microsoft Defender XDR threat protection
+ - [x] Mitigate incidents using Microsoft Defender
+ - [x] Remediate risks with Microsoft Defender for Office 365
+ - [x] Manage Microsoft Entra Identity Protection
+ - [x] Safeguard your environment with Microsoft Defender for Identity
+ - [x] Secure your cloud apps and services with Microsoft Defender for Cloud Apps
+ 
+
+> 📌 **Key concepts**: Defender, Office 365, Portal, Incident, Alert
+
+## **🧰 Introduction to Microsoft Defender XDR threat protection**
+
+#### `Microsoft Defender XDR`
+- An integrated threat protection suite.
+- Has solutions that detect malicious activity across email, endpoints, applications, and identity. 
+- These solutions provide a complete attack chain compromise story.
+- Enables a complete understanding of the threat.
+- Enables you to remediate and protect your organization from future attacks.
+
+#### `Sample attack chain graphic: see the attacker activity visible to each Microsoft Defender XDR product`
+
+![Attack chain](/Images/attackchain.png)
